@@ -48,8 +48,8 @@ async def generate_command(
         )
         image = await prodia.wait(result)
 
-        img = discord.File(await aload(image.image_url), filename="result.png")
-        await msg.edit_original_response(content=f"**{prompt}** - {ctx.user.mention}", file=img)
+        file = discord.File(await aload(image.image_url), filename="result.png")
+        await msg.edit_original_response(content=f"**{prompt}** - {ctx.user.mention}", file=file)
 
     except Exception as e:
         logger.error(f"{e}")
