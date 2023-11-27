@@ -1,5 +1,6 @@
 # stable-diffusion-bot
-Stable Diffusion Discord bot powered by Prodia
+Stable Diffusion Discord bot powered by Prodia\
+[Support server](https://discord.gg/7NbzdD6qg8)
 
 # pre-requirements
 - Python 3.7+
