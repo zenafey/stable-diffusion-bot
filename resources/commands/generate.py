@@ -34,7 +34,7 @@ async def generate_command(
     msg = await ctx.respond(f"{loading_line} Generating image...")
 
     try:
-        result = await prodia.sd.generate(
+        job = await prodia.sd.generate(
             model=model,
             prompt=prompt,
             negative_prompt=negative_prompt,
@@ -46,14 +46,17 @@ async def generate_command(
             sampler=sampler,
             aspect_ratio=aspect_ratio
         )
-        image = await prodia.wait(result)
+        result = await prodia.wait(job, raise_on_fail=False)
 
-        file = discord.File(await aload(image.image_url), filename="result.png")
+        if result.failed:
+            await msg.edit_original_response(f"Job failed, please try again\nJob id: {result.job_id}")
+
+        file = discord.File(await aload(result.image_url), filename=f"{result.job_id}.png")
         await msg.edit_original_response(content=f"**{prompt}** - {ctx.user.mention}", file=file)
 
     except Exception as e:
         logger.error(f"{e}")
-        await ctx.respond(f"Something went wrong")
+        await msg.edit_original_response(f"Unknown error occurred")
 
 
 def setup(bot):
