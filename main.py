@@ -1,9 +1,21 @@
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-e", "--env", choices=["dev", "prod"], default="dev")
+args = parser.parse_args()
+
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
+match args.env:
+    case "prod":
+        discord_token = os.getenv("DISCORD_PROD")
+    case _:
+        discord_token = os.getenv("DISCORD")
+
 import discord
 from discord.ext import commands
-import os
 
 from resources.utils import logger
 
@@ -20,6 +32,8 @@ async def on_ready():
     except Exception as e:
         logger.error(f"Something went wrong while loading extensions:\n{e}")
 
+    await bot.sync_commands()
+
     logger.logs(f"Logged in as {bot.user}")
 
 
@@ -31,4 +45,4 @@ async def sync_commands(ctx):
 
 
 if __name__ == '__main__':
-    bot.run(os.getenv("DISCORD"))
+    bot.run(discord_token)
