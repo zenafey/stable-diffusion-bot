@@ -14,9 +14,9 @@ Stable Diffusion Discord bot powered by Prodia
   ```
 - rename .env.example to .env and put your api keys there
 - install requirements
-```cmd
-pip install -r requirements.txt
-```
+  ```cmd
+  pip install -r requirements.txt
+  ```
 - run main.py
   ```cmd
   python main.py
