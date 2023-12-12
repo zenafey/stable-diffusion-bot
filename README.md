@@ -3,7 +3,7 @@ Stable Diffusion Discord bot powered by Prodia\
 [Support server](https://discord.gg/7NbzdD6qg8)
 
 # pre-requirements
-- Python 3.7+
+- Python 3.10+
 - Git
 - Prodia & Discord bot api keys
 
