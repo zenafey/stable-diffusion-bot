@@ -1,4 +1,4 @@
-from resources.inference import syncprodia
+from resources.utils import syncprodia
 
 samplers = syncprodia.sd.samplers()
 
@@ -47,5 +47,3 @@ style_presets = [
   "texture",
   "craft-clay"
 ]
-
-loading_line = "<a:loading_line:1178306728861913118>"
